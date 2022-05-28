@@ -1,0 +1,10 @@
+1.Daemonset is used for creating a pod on each node (unlike the replicaset which ensures as many pods
+ mentioned in the configuration file are created in entire cluster and the node on which the pod is to be added is decided by scheduler).
+
+2.Daemonset can be used when the pod is to be destroyed after node is destroyed. 
+
+3.usedin collecting logs on every node.
+
+4.Daemon set helps detect problems on which it is occuring.
+
+ 
