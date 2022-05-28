@@ -1,0 +1,29 @@
+1. No difference seen in application after deleting vote pod . However when checked it had created new vote pod
+kubectl delete po vote-94849dc97-w2xdl
+
+2.After deleting worker pod no difference observed in application it was working fine. However new pod was created.
+kubectl delete po worker-dd46d7584-rm8mg
+
+3.After deleting the DB pod I was able to vote in application but the result page was stuck and wasn’t updating. I observed a new db created after deleting the db.
+ kubectl delete po db-b54cd94f4-7d9x5
+
+4. Worker node restarted after deleting the DB.
+5. Result app stopped working as the old DB was deleted which was synchronously connected to result app. Hence it was not getting values from new db.
+ Result logs after deleting db:
+Error performing query: error: relation "votes" does not exist
+Error performing query: error: relation "votes" does not exist
+Error performing query: error: relation "votes" does not exist
+Error performing query: error: relation "votes" does not exist
+Error performing query: Error: This socket has been ended by the other party
+
+6.In order make result work properly I deleted the result pod hence new result pod was created which started pointing to the new db and hence the db pod started working properly.
+kubectl delete po result-5d57b59f4b-vzm5r
+
+Result logs after restart:
+
+Sat, 28 May 2022 14:18:20 GMT body-parser deprecated bodyParser: use individual json/urlencoded middlewares at server.js:67:9
+Sat, 28 May 2022 14:18:20 GMT body-parser deprecated undefined extended: provide extended option at ../node_modules/body-parser/index.js:105:29
+App running on port 80
+Connected to db
+
+Some jargons learnt till now : Microservices, kubectl ,cluster,API server,Pods,containers,services,control manager,Daemonset,deployment.
