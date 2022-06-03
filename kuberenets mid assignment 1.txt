@@ -1,0 +1,4 @@
+1. In Kubia-rc.yaml we have to mention the containerPort (containerPort: 8080) and the kind for kubia-rc.yaml is ReplicationController and for kubia-replicaset.yaml ReplicaSet 
+2.kubectl get rs
+3.yes was able to observe "You have hit..." message after running curl command.
+4.No,service did not run on this pod because of label mismatch.
